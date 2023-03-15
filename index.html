@@ -68,6 +68,21 @@
 
         <button id="defense" onclick="faitDefense()">Fait Défense</button><br>
         
+        <p>Cube bas</p>
+        <button onclick="cubeBottom.value--">-</button><input name="cubeBottom" type="number" id="cubeBottom" class="toExport" value="0"><button onclick="cubeBottom.value++">+</button><br>
+        <p>Cube milieu</p>
+        <button onclick="cubeMiddle.value--">-</button><input name="cubeMiddle" type="number" id="cubeMiddle" class="toExport" value="0"><button onclick="cubeMiddle.value++">+</button><br>
+        <p>Cube haut</p>
+        <button onclick="cubeTop.value--">-</button><input name="cubeTop" type="number" id="cubeTop" class="toExport" value="0"><button onclick="cubeTop.value++">+</button><br>
+
+        <p>Cone bas</p>
+        <button onclick="coneBottom.value--">-</button><input name="coneBottom" type="number" id="coneBottom" class="toExport" value="0"><button onclick="coneBottom.value++">+</button><br>
+        <p>Cone milieu</p>
+        <button onclick="coneMiddle.value--">-</button><input name="coneMiddle" type="number" id="coneMiddle" class="toExport" value="0"><button onclick="coneMiddle.value++">+</button><br>
+        <p>Cone haut</p>
+        <button onclick="coneTop.value--">-</button><input name="coneTop" type="number" id="coneTop" class="toExport" value="0"><button onclick="coneTop.value++">+</button><br>
+
+
         <p>Commentaire:</p><br>
         <textarea name="commentaire" id="commentaire" class="toExport"></textarea><br>
         <button id="finMatch" onclick="finMatch()">Fin de match</button>
@@ -75,14 +90,18 @@
     </div>
 
     <div class="col hiddenBeforeMatch">
-        <h4>Peut ramasser des cube</h4>
+        <h4>Peut ramasser des cubes</h4>
         <input name="ramasseCubeParTerre" type="checkbox" id="ramasseCubeParTerre" class="toExport">Par terre<br>
         <input name="ramasseCubeFeedingStation" type="checkbox" id="ramasseCubeFeedingStation" class="toExport">Feeding Station<br>
         <h4>Peut ramasser des cones</h4>
         <input name="ramasseConeParTerre" type="checkbox" id="ramasseConeParTerre" class="toExport">Par terre<br>
         <input name="ramasseConeFeedingStation" type="checkbox" id="ramasseConeFeedingStation" class="toExport">Feeding Station<br>
         <h4>Endgame</h4>
-               <h4>Pins</h4>
+
+        <input name="endgameDocked" type="checkbox" id="endgameDocked" class="toExport">Est sur la balance non-engagée?<br>
+        <input name="endgameEngaged" type="checkbox" id="endgameEngaged" class="toExport">Est sur la balance engagée?<br>
+
+        <h4>Pins</h4>
         <p>Nombre de pin reçu</p>
         <button onclick="pinRecu.value--">-</button><input name="pinRecu" type="number" id="pinRecu" class="toExport" value="0"><button onclick="pinRecu.value++">+</button><br>
         <input name="bougePin" type="checkbox" id="bougePin" class="toExport">Bouge pendant pin?<br>
@@ -175,7 +194,7 @@ function faitDefense(){
     }else {
         var timeDefense = getTimer("faitDefense");
         tempsDefense.push(timeDefense);
-        defense.style.backgroundColor = "default";
+        defense.style.backgroundColor = "#fff";
         defense.style.color = "black";
         defense.innerText = "Fait Défense";
 
