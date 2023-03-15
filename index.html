@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" manifest="scouting.appcache">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scouting 2023</title>
+
+    <script>
+        /*! @source http://purl.eligrey.com/github/FileSaver.js/blob/master/FileSaver.js */
+    var saveAs=saveAs||function(e){"use strict";if(typeof e==="undefined"||typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var t=e.document,n=function(){return e.URL||e.webkitURL||e},r=t.createElementNS("http://www.w3.org/1999/xhtml","a"),o="download"in r,a=function(e){var t=new MouseEvent("click");e.dispatchEvent(t)},i=/constructor/i.test(e.HTMLElement)||e.safari,f=/CriOS\/[\d]+/.test(navigator.userAgent),u=function(t){(e.setImmediate||e.setTimeout)(function(){throw t},0)},s="application/octet-stream",d=1e3*40,c=function(e){var t=function(){if(typeof e==="string"){n().revokeObjectURL(e)}else{e.remove()}};setTimeout(t,d)},l=function(e,t,n){t=[].concat(t);var r=t.length;while(r--){var o=e["on"+t[r]];if(typeof o==="function"){try{o.call(e,n||e)}catch(a){u(a)}}}},p=function(e){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(e.type)){return new Blob([String.fromCharCode(65279),e],{type:e.type})}return e},v=function(t,u,d){if(!d){t=p(t)}var v=this,w=t.type,m=w===s,y,h=function(){l(v,"writestart progress write writeend".split(" "))},S=function(){if((f||m&&i)&&e.FileReader){var r=new FileReader;r.onloadend=function(){var t=f?r.result:r.result.replace(/^data:[^;]*;/,"data:attachment/file;");var n=e.open(t,"_blank");if(!n)e.location.href=t;t=undefined;v.readyState=v.DONE;h()};r.readAsDataURL(t);v.readyState=v.INIT;return}if(!y){y=n().createObjectURL(t)}if(m){e.location.href=y}else{var o=e.open(y,"_blank");if(!o){e.location.href=y}}v.readyState=v.DONE;h();c(y)};v.readyState=v.INIT;if(o){y=n().createObjectURL(t);setTimeout(function(){r.href=y;r.download=u;a(r);h();c(y);v.readyState=v.DONE});return}S()},w=v.prototype,m=function(e,t,n){return new v(e,t||e.name||"download",n)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(e,t,n){t=t||e.name||"download";if(!n){e=p(e)}return navigator.msSaveOrOpenBlob(e,t)}}w.abort=function(){};w.readyState=w.INIT=0;w.WRITING=1;w.DONE=2;w.error=w.onwritestart=w.onprogress=w.onwrite=w.onabort=w.onerror=w.onwriteend=null;return m}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!==null){define("FileSaver.js",function(){return saveAs})}
+        </script>
+
+
+    <style>
+        .col {
+            width: 33.33%;
+            float: left;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <h2 id="stateMatch">État du match</h2>
+    <h3 id="matchTime" class="hiddenBeforeMatch">Match Time: </h3>
+    <div class="col">
+
+        <div class="scouterInfo">
+            <h4>Nom du scouter:</h4>
+            <input name="scouterName" type="text" id="scouterName" class="toExport">
+            <h4># du match</h4>
+            <input name="matchNb" type="number" id="matchNb" class="toExport">
+            <h4># de l'Équipe</h4>
+            <input name="teamNb" type="number" id="teamNb" class="toExport"><br>
+            <button id="debutMatch" onclick="debutMatch()">Début de match</button><br>
+        </div>
+
+        <div class="hiddenBeforeMatch">
+            <h4>Mode Autonome</h4>
+            <input name="autoTraverserLigne" type="checkbox" id="autoTraverserLigne" class="toExport">A traverser ligne?<br>
+            <input name="autoDocked" type="checkbox" id="autoDocked" class="toExport">Est sur la balance non-engagée?<br>
+            <input name="autoEngaged" type="checkbox" id="autoEngaged" class="toExport">Est sur la balance engagée?<br>
+            <h4>Pièce auto</h4>
+            <p>Cube bas</p>
+            <button onclick="autoCubeBottom.value--">-</button><input name="autoCubeBottom" type="number" id="autoCubeBottom" class="toExport" value="0"><button onclick="autoCubeBottom.value++">+</button><br>
+            <p>Cube milieu</p>
+            <button onclick="autoCubeMiddle.value--">-</button><input name="autoCubeMiddle" type="number" id="autoCubeMiddle" class="toExport" value="0"><button onclick="autoCubeMiddle.value++">+</button><br>
+            <p>Cube haut</p>
+            <button onclick="autoCubeTop.value--">-</button><input name="autoCubeTop" type="number" id="autoCubeTop" class="toExport" value="0"><button onclick="autoCubeTop.value++">+</button><br>
+
+            <p>Cone bas</p>
+            <button onclick="autoConeBottom.value--">-</button><input name="autoConeBottom" type="number" id="autoConeBottom" class="toExport" value="0"><button onclick="autoConeBottom.value++">+</button><br>
+            <p>Cone milieu</p>
+            <button onclick="autoConeMiddle.value--">-</button><input name="autoConeMiddle" type="number" id="autoConeMiddle" class="toExport" value="0"><button onclick="autoConeMiddle.value++">+</button><br>
+            <p>Cone haut</p>
+            <button onclick="autoConeTop.value--">-</button><input name="autoConeTop" type="number" id="autoConeTop" class="toExport" value="0"><button onclick="autoConeTop.value++">+</button><br>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="col hiddenBeforeMatch">
+        <h4>Teleop</h4>
+
+        <button id="defense" onclick="faitDefense()">Fait Défense</button><br>
+        
+        <p>Commentaire:</p><br>
+        <textarea name="commentaire" id="commentaire" class="toExport"></textarea><br>
+        <button id="finMatch" onclick="finMatch()">Fin de match</button>
+
+    </div>
+
+    <div class="col hiddenBeforeMatch">
+        <h4>Peut ramasser des cube</h4>
+        <input name="ramasseCubeParTerre" type="checkbox" id="ramasseCubeParTerre" class="toExport">Par terre<br>
+        <input name="ramasseCubeFeedingStation" type="checkbox" id="ramasseCubeFeedingStation" class="toExport">Feeding Station<br>
+        <h4>Peut ramasser des cones</h4>
+        <input name="ramasseConeParTerre" type="checkbox" id="ramasseConeParTerre" class="toExport">Par terre<br>
+        <input name="ramasseConeFeedingStation" type="checkbox" id="ramasseConeFeedingStation" class="toExport">Feeding Station<br>
+        <h4>Endgame</h4>
+               <h4>Pins</h4>
+        <p>Nombre de pin reçu</p>
+        <button onclick="pinRecu.value--">-</button><input name="pinRecu" type="number" id="pinRecu" class="toExport" value="0"><button onclick="pinRecu.value++">+</button><br>
+        <input name="bougePin" type="checkbox" id="bougePin" class="toExport">Bouge pendant pin?<br>
+        <p>Nombre de pin initié</p>
+        <button onclick="pinInitie.value--">-</button><input name="pinInitie" type="number" id="pinInitie" class="toExport" value="0"><button onclick="pinInitie.value++">+</button>
+        <p>Nombre de pénalité causé par les pins</p>
+        <button onclick="penoPin.value--">-</button><input name="penoPin" type="number" id="penoPin" class="toExport" value="0"><button onclick="penoPin.value++">+</button>
+
+        
+    </div>
+
+</body>
+
+<script>
+
+
+var timers = [];
+var tempsDefense = [];
+
+
+
+
+function exportAll(){
+    var thingsToExport = document.getElementsByClassName("toExport");
+
+    var outArray = {};
+
+    for (var i = 0; i < thingsToExport.length; i++) {
+        var element = thingsToExport[i];
+            //console.log(element.value);
+
+        if (element.type == "checkbox"){
+                outArray[element.name] = element.checked;
+        }else{
+            outArray[element.name] = element.value;
+        }
+    }
+    outArray["TimeDefense"] = tempsDefense;
+    return outArray;
+}
+
+
+
+function setDisplayStyle(nomStyle, className){
+    var elements = document.getElementsByClassName(className);
+    for (let index = 0; index < elements.length; index++) {
+        elements[index].style.display = nomStyle;
+        
+    }
+}
+
+setDisplayStyle("none", "hiddenBeforeMatch");
+
+function startTimer(name){
+        timers[name] = ((new Date()).getTime() / 1000);
+}
+
+function getTimer(name){
+    return(((new Date()).getTime() / 1000) - timers[name]);
+}
+
+var interval = setInterval(setMatchState, 1000);
+
+function setMatchState(){
+    
+    if (getTimer("match")) {
+        matchTime.innerText = "Remaining Match Time: " + Math.ceil(150-getTimer("match"));
+        if (getTimer("match") >= 16) {
+            stateMatch.innerText = "Teleop"
+            if (getTimer("match") >= 121) {
+                stateMatch.innerText = "EndGame";
+                if (getTimer("match") >= 151) {
+                    stateMatch.innerText = "Match finished"
+                    matchTime.innerText = "Remaining Match Time: 0";
+                }
+            }
+        }
+    }
+}
+
+
+function faitDefense(){
+    if (defense.innerText == "Fait Défense") {
+        var timeMatch = getTimer("match");
+        startTimer("faitDefense");
+        defense.style.backgroundColor = "Red";
+        defense.style.color = "White";
+        defense.innerText = "Fini Défense";
+
+    }else {
+        var timeDefense = getTimer("faitDefense");
+        tempsDefense.push(timeDefense);
+        defense.style.backgroundColor = "default";
+        defense.style.color = "black";
+        defense.innerText = "Fait Défense";
+
+    }
+}
+
+function debutMatch(){
+    startTimer("match");
+    setDisplayStyle("initial", "hiddenBeforeMatch");
+    setDisplayStyle("none", "scouterInfo");
+    stateMatch.innerText = "Autonomous";
+}
+
+function finMatch(){
+    var blob = new Blob([JSON.stringify(exportAll())], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "m" + exportAll().matchNb + "t" + exportAll().teamNb);
+}
+
+</script>
+</html>
