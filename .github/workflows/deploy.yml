@@ -19,7 +19,10 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Update revision number in cache manifest
-        run: sed -i "s/# Offline cache.*/# Offline cache $(git rev-parse --short HEAD)/" manifest.appcache
+        run: sed -i "s/# Offline cache.*/# Offline cache $(git rev-parse --short HEAD)/" scouting.appcache
+      
+      - name: Print new content of scouting appcache
+        run: cat scouting.appcache
 
       - uses: actions/upload-artifact@master
         with:
