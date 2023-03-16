@@ -24,11 +24,9 @@ jobs:
       - name: Print new content of scouting appcache
         run: cat scouting.appcache
 
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-pages-artifact@v1
         with:
-          name: page
           path: .
-          if-no-files-found: error
 
 
   # Deploy job
