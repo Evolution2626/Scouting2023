@@ -1,9 +1,7 @@
 jobs:
   # Build job
   build:
-    
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -11,10 +9,10 @@ jobs:
         run: sed -i "s/# Offline cache.*/# Offline cache $(git rev-parse --short HEAD)/" manifest.appcache
 
       - uses: actions/upload-artifact@master
-      with:
-        name: page
-        path: .
-        if-no-files-found: error
+        with:
+          name: page
+          path: .
+          if-no-files-found: error
 
 
   # Deploy job
