@@ -13,17 +13,75 @@
 
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
         .col {
             width: 33.33%;
             float: left;
         }
 
+        
+
+        button{
+            height: 45px;
+            border-radius: 5px;
+            background-color: var(--primary-color);
+            color: var(black);
+            border: var(--main-dark);
+            border-style: solid;
+        }
+
+        #plusminusbutton {
+            width: 45px;
+            font-size: xx-large;
+        }
+
+        body{
+            background-color: var(--main-darklg);
+            color: var(--main-light);
+            text-align: center;
+        }
+
+        input[type=checkbox]{
+            height: 35px;
+            width: 35px;
+        }
+
+        input[type=number]{
+            height: 45px;
+            width: 45px;
+        }
+
+        #matchNb, #teamNb {
+            width: 100px;
+            height: 20px;
+        }
+
+        #debutMatch {
+            height: 75px;
+        }
+        :root {
+            --main-darklg: #414141;
+            --main-dark: #161d29;
+            --primary-color: #fff347;
+            --main-light: #FFFFFF;
+        }
+
+        
+        
     </style>
 
 </head>
 <body>
     
-    <h2 id="stateMatch">État du match</h2>
+    <h1 id="stateMatch">État du match</h1>
     <h3 id="matchTime" class="hiddenBeforeMatch">Match Time: </h3>
     <div class="col">
 
@@ -39,23 +97,24 @@
 
         <div class="hiddenBeforeMatch">
             <h4>Mode Autonome</h4>
+            
             <input name="autoTraverserLigne" type="checkbox" id="autoTraverserLigne" class="toExport">A traverser ligne?<br>
             <input name="autoDocked" type="checkbox" id="autoDocked" class="toExport">Est sur la balance non-engagée?<br>
             <input name="autoEngaged" type="checkbox" id="autoEngaged" class="toExport">Est sur la balance engagée?<br>
             <h4>Pièce auto</h4>
             <p>Cube bas</p>
-            <button onclick="autoCubeBottom.value--">-</button><input name="autoCubeBottom" type="number" id="autoCubeBottom" class="toExport" value="0"><button onclick="autoCubeBottom.value++">+</button><br>
+            <button id="plusminusbutton" onclick="autoCubeBottom.value--">-</button><input name="autoCubeBottom" type="number" id="autoCubeBottom" class="toExport" value="0"><button id="plusminusbutton" onclick="autoCubeBottom.value++">+</button><br>
             <p>Cube milieu</p>
-            <button onclick="autoCubeMiddle.value--">-</button><input name="autoCubeMiddle" type="number" id="autoCubeMiddle" class="toExport" value="0"><button onclick="autoCubeMiddle.value++">+</button><br>
+            <button id="plusminusbutton" onclick="autoCubeMiddle.value--">-</button><input name="autoCubeMiddle" type="number" id="autoCubeMiddle" class="toExport" value="0"><button id="plusminusbutton" onclick="autoCubeMiddle.value++">+</button><br>
             <p>Cube haut</p>
-            <button onclick="autoCubeTop.value--">-</button><input name="autoCubeTop" type="number" id="autoCubeTop" class="toExport" value="0"><button onclick="autoCubeTop.value++">+</button><br>
+            <button id="plusminusbutton" onclick="autoCubeTop.value--">-</button><input name="autoCubeTop" type="number" id="autoCubeTop" class="toExport" value="0"><button id="plusminusbutton" onclick="autoCubeTop.value++">+</button><br>
 
             <p>Cone bas</p>
-            <button onclick="autoConeBottom.value--">-</button><input name="autoConeBottom" type="number" id="autoConeBottom" class="toExport" value="0"><button onclick="autoConeBottom.value++">+</button><br>
+            <button id="plusminusbutton" onclick="autoConeBottom.value--">-</button><input name="autoConeBottom" type="number" id="autoConeBottom" class="toExport" value="0"><button id="plusminusbutton" onclick="autoConeBottom.value++">+</button><br>
             <p>Cone milieu</p>
-            <button onclick="autoConeMiddle.value--">-</button><input name="autoConeMiddle" type="number" id="autoConeMiddle" class="toExport" value="0"><button onclick="autoConeMiddle.value++">+</button><br>
+            <button id="plusminusbutton" onclick="autoConeMiddle.value--">-</button><input name="autoConeMiddle" type="number" id="autoConeMiddle" class="toExport" value="0"><button id="plusminusbutton" onclick="autoConeMiddle.value++">+</button><br>
             <p>Cone haut</p>
-            <button onclick="autoConeTop.value--">-</button><input name="autoConeTop" type="number" id="autoConeTop" class="toExport" value="0"><button onclick="autoConeTop.value++">+</button><br>
+            <button id="plusminusbutton" onclick="autoConeTop.value--">-</button><input name="autoConeTop" type="number" id="autoConeTop" class="toExport" value="0"><button id="plusminusbutton" onclick="autoConeTop.value++">+</button><br>
 
 
         </div>
@@ -69,18 +128,18 @@
         <button id="defense" onclick="faitDefense()">Fait Défense</button><br>
         
         <p>Cube bas</p>
-        <button onclick="cubeBottom.value--">-</button><input name="cubeBottom" type="number" id="cubeBottom" class="toExport" value="0"><button onclick="cubeBottom.value++">+</button><br>
+        <button id="plusminusbutton" onclick="cubeBottom.value--">-</button><input name="cubeBottom" type="number" id="cubeBottom" class="toExport" value="0"><button id="plusminusbutton" onclick="cubeBottom.value++">+</button><br>
         <p>Cube milieu</p>
-        <button onclick="cubeMiddle.value--">-</button><input name="cubeMiddle" type="number" id="cubeMiddle" class="toExport" value="0"><button onclick="cubeMiddle.value++">+</button><br>
+        <button id="plusminusbutton" onclick="cubeMiddle.value--">-</button><input name="cubeMiddle" type="number" id="cubeMiddle" class="toExport" value="0"><button id="plusminusbutton" onclick="cubeMiddle.value++">+</button><br>
         <p>Cube haut</p>
-        <button onclick="cubeTop.value--">-</button><input name="cubeTop" type="number" id="cubeTop" class="toExport" value="0"><button onclick="cubeTop.value++">+</button><br>
+        <button id="plusminusbutton" onclick="cubeTop.value--">-</button><input name="cubeTop" type="number" id="cubeTop" class="toExport" value="0"><button id="plusminusbutton" onclick="cubeTop.value++">+</button><br>
 
         <p>Cone bas</p>
-        <button onclick="coneBottom.value--">-</button><input name="coneBottom" type="number" id="coneBottom" class="toExport" value="0"><button onclick="coneBottom.value++">+</button><br>
+        <button id="plusminusbutton" onclick="coneBottom.value--">-</button><input name="coneBottom" type="number" id="coneBottom" class="toExport" value="0"><button id="plusminusbutton" onclick="coneBottom.value++">+</button><br>
         <p>Cone milieu</p>
-        <button onclick="coneMiddle.value--">-</button><input name="coneMiddle" type="number" id="coneMiddle" class="toExport" value="0"><button onclick="coneMiddle.value++">+</button><br>
+        <button id="plusminusbutton" onclick="coneMiddle.value--">-</button><input name="coneMiddle" type="number" id="coneMiddle" class="toExport" value="0"><button id="plusminusbutton" onclick="coneMiddle.value++">+</button><br>
         <p>Cone haut</p>
-        <button onclick="coneTop.value--">-</button><input name="coneTop" type="number" id="coneTop" class="toExport" value="0"><button onclick="coneTop.value++">+</button><br>
+        <button id="plusminusbutton" onclick="coneTop.value--">-</button><input name="coneTop" type="number" id="coneTop" class="toExport" value="0"><button id="plusminusbutton" onclick="coneTop.value++">+</button><br>
 
 
         <p>Commentaire:</p><br>
@@ -100,15 +159,16 @@
 
         <input name="endgameDocked" type="checkbox" id="endgameDocked" class="toExport">Est sur la balance non-engagée?<br>
         <input name="endgameEngaged" type="checkbox" id="endgameEngaged" class="toExport">Est sur la balance engagée?<br>
+        <input name="flip" type="checkbox" id="flip" class="toExport">Est-ce que le robot à flipper?<br>
 
         <h4>Pins</h4>
         <p>Nombre de pin reçu</p>
-        <button onclick="pinRecu.value--">-</button><input name="pinRecu" type="number" id="pinRecu" class="toExport" value="0"><button onclick="pinRecu.value++">+</button><br>
+        <button id="plusminusbutton" onclick="pinRecu.value--">-</button><input name="pinRecu" type="number" id="pinRecu" class="toExport" value="0"><button id="plusminusbutton" onclick="pinRecu.value++">+</button><br>
         <input name="bougePin" type="checkbox" id="bougePin" class="toExport">Bouge pendant pin?<br>
         <p>Nombre de pin initié</p>
-        <button onclick="pinInitie.value--">-</button><input name="pinInitie" type="number" id="pinInitie" class="toExport" value="0"><button onclick="pinInitie.value++">+</button>
+        <button id="plusminusbutton" onclick="pinInitie.value--">-</button><input name="pinInitie" type="number" id="pinInitie" class="toExport" value="0"><button id="plusminusbutton" onclick="pinInitie.value++">+</button>
         <p>Nombre de pénalité causé par les pins</p>
-        <button onclick="penoPin.value--">-</button><input name="penoPin" type="number" id="penoPin" class="toExport" value="0"><button onclick="penoPin.value++">+</button>
+        <button id="plusminusbutton" onclick="penoPin.value--">-</button><input name="penoPin" type="number" id="penoPin" class="toExport" value="0"><button id="plusminusbutton" onclick="penoPin.value++">+</button>
 
         
     </div>
