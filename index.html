@@ -129,6 +129,8 @@ function exportAll(){
 
     var outArray = {};
 
+    var totalTempsDefense = 0;
+
     for (var i = 0; i < thingsToExport.length; i++) {
         var element = thingsToExport[i];
             //console.log(element.value);
@@ -139,7 +141,11 @@ function exportAll(){
             outArray[element.name] = element.value;
         }
     }
-    outArray["TimeDefense"] = tempsDefense;
+    for (let i = 0; i < tempsDefense.length; i++) {
+        totalTempsDefense += tempsDefense[i];
+    }
+
+    outArray["TimeDefense"] = totalTempsDefense;
     return outArray;
 }
 
