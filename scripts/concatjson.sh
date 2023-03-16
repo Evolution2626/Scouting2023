@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Remove the output file if it already exists
-rm -f "$output_file"
-
 # Add the opening bracket to the output file
 echo "["
 
