@@ -276,7 +276,7 @@ function debutMatch(){
 
 function finMatch(){
     var blob = new Blob([JSON.stringify(exportAll())], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "m" + exportAll().matchNb + "t" + exportAll().teamNb);
+    saveAs(blob, "m" + exportAll().matchNb + "t" + exportAll().teamNb + ".json");
 }
 
 </script>
