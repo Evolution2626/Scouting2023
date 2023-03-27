@@ -38,6 +38,10 @@
             border-style: solid;
         }
 
+        .doNotDoThis{
+            background-color: red;
+        }
+
         #plusminusbutton {
             width: 45px;
             font-size: xx-large;
@@ -93,6 +97,12 @@
             <h4># de l'Équipe</h4>
             <input name="teamNb" type="number" id="teamNb" class="toExport"><br>
             <button id="debutMatch" onclick="debutMatch()">Début de match</button><br>
+            <br><br><br><br>
+            <button id="clearScoutDate" onclick="showAllScoutingData()">Télécharger/AirDrop les données de tout les matchs</button><br>
+            <br><br><br><br>
+            <button id="clearScoutDate" class="doNotDoThis" onclick="clearLocalstorage()">Supprimer les données de tout les matchs</button><br>
+
+
         </div>
 
         <div class="hiddenBeforeMatch">
@@ -275,8 +285,37 @@ function debutMatch(){
 }
 
 function finMatch(){
-    var blob = new Blob([JSON.stringify(exportAll())], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "m" + exportAll().matchNb + "t" + exportAll().teamNb + ".json");
+    if (confirm("Je confirme que les données sont valides.")) {
+        var blob = new Blob([JSON.stringify(exportAll())], {type: "text/plain;charset=utf-8"});
+        if (localStorage.getItem("scoutData")){
+            var data = JSON.parse(localStorage.getItem("scoutData"));
+            data.push(exportAll());
+            localStorage.setItem("scoutData", JSON.stringify(data));
+        }
+        else{
+            var data = [];
+            data.push(exportAll());
+            localStorage.setItem("scoutData", JSON.stringify(data));
+        }
+        saveAs(blob, "m" + exportAll().matchNb + "t" + exportAll().teamNb + ".json");
+    }
+}
+
+function showAllScoutingData() {
+    var data = JSON.parse(localStorage.getItem("scoutData"));
+    var exportAllDataFile = new Blob([JSON.stringify(data)], {type: "text/plain;charset=utf-8"});
+    saveAs(exportAllDataFile, "scoutingResults.json");
+}
+
+function clearLocalstorage(){
+
+    if (confirm("Attention, voulez-vous vraiment supprimer toutes les données?")) {
+        if (confirm("Êtes-vous vraiment sûr?")) {
+            if (confirm("Êtes-vous vraiment, vraiment sûr? Toutes les données seront perdues.")) {
+                localStorage.clear();
+            }
+        }
+    }
 }
 
 </script>
