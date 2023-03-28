@@ -98,9 +98,17 @@
             <input name="teamNb" type="number" id="teamNb" class="toExport"><br>
             <button id="debutMatch" onclick="debutMatch()">Début de match</button><br>
             <br><br><br><br>
-            <button id="clearScoutDate" onclick="showAllScoutingData()">Télécharger/AirDrop les données de tout les matchs</button><br>
+            <button id="showScoutData" onclick="showAllScoutingData()">Télécharger/AirDrop les données de tout les matchs</button><br>
+
             <br><br><br><br>
-            <button id="clearScoutDate" class="doNotDoThis" onclick="clearLocalstorage()">Supprimer les données de tout les matchs</button><br>
+            <form action="https://github.com/Evolution2626/scouting-data-parser/new/main" method="get" target="_blank">
+                <input type="text" name="filename" id="filename" hidden>
+                <input type="text" name="value" id="value" hidden>
+                <input type="submit" value="Upload all data to github">
+            </form>
+
+            <br><br><br><br>
+            <button id="clearScoutData" class="doNotDoThis" onclick="clearLocalstorage()">Supprimer les données de tout les matchs</button><br>
 
 
         </div>
@@ -192,6 +200,14 @@ var timers = [];
 var tempsDefense = [];
 
 
+
+//Update data to export to github
+
+document.getElementById("filename").value = "/data/2023/Export" + Date.now() + ".json";
+
+if (localStorage.getItem("scoutData")){
+    document.getElementById("value").value = localStorage.getItem("scoutData");
+}
 
 
 function exportAll(){
